@@ -2,9 +2,31 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
+    <GlobalHeader :user="currentUser" />
   </div>
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent, computed } from 'vue';
+import GlobalHeader from "@/components/GlobalHeader.vue";
+import { useStore } from "vuex";
+import { GlobalDataProps } from '@/propType'
+
+export default defineComponent({
+  components: {
+    GlobalHeader
+  },
+  setup() {
+    const store = useStore<GlobalDataProps>()
+    const currentUser = computed(() => store.state.user)
+
+    return {
+      currentUser
+    }
+  }
+})
+</script>
 
 <style lang="scss">
 #app {
