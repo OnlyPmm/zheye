@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Home from '@/views/Home.vue'
 import Login from '@/views/user/Login.vue'
 import Signup from '@/views/user/Signup.vue'
-import ColumnDetail from '@/components/column/Detail.vue'
+import ColumnDetail from '@/views/column/Detail.vue'
+import PostsDetail from '@/views/post/Detail.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/column/:id',
     name: 'column',
     component: ColumnDetail
+  },
+  {
+    path: '/posts/:id',
+    name: 'post',
+    component: PostsDetail
   }
 ]
 

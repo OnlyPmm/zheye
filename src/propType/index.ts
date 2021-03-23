@@ -1,6 +1,16 @@
 export interface GlobalDataProps {
+    loading: boolean;
+    error: GlobalErrorProps;
     user: UserProps;
-    columns: { data: Array<ColumnProps>; currentPage: number; total: number };
+    columns: { data: Array<ListProps<ColumnProps>>; currentPage: number; total: number };
+    columnDetail: ColumnProps | {};
+    posts: { data: Array<ListProps<PostProps>> },
+    postDetail: PostProps | {};
+}
+
+export interface GlobalErrorProps {
+    status: boolean;
+    message?: string;
 }
 
 export interface UserProps {
@@ -27,6 +37,18 @@ export interface ColumnProps {
     description: string;
 }
 
-/* interface ListProps<P> {
+export interface ListProps<P> {
     [id: string]: P;
-} */
+}
+
+export interface PostProps {
+    _id?: string;
+    title: string;
+    excerpt?: string;
+    content?: string;
+    image?: ImageProps | string;
+    createdAt?: string;
+    column: string;
+    author?: string | UserProps;
+    isHTML?: boolean;
+}

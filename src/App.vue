@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <GlobalHeader :user="currentUser" />
+    <Loader v-if="isLoading" />
     <router-view/>
     <footer class="text-center py-4 text-secondary bg-light mt-6">
       <small>
@@ -22,17 +23,21 @@ import { defineComponent, computed } from 'vue';
 import { useStore } from "vuex";
 import { GlobalDataProps } from '@/propType'
 import GlobalHeader from "@/components/GlobalHeader.vue";
+import Loader from '@/components/Loader.vue'
 
 export default defineComponent({
   components: {
-    GlobalHeader
+    GlobalHeader,
+    Loader
   },
   setup() {
     const store = useStore<GlobalDataProps>()
     const currentUser = computed(() => store.state.user)
+    const isLoading = computed(() => store.state.loading)
 
     return {
-      currentUser
+      currentUser,
+      isLoading
     }
   }
 })
